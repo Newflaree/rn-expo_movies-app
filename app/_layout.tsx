@@ -3,14 +3,27 @@ import {
   View,
   Text
 } from 'react-native';
+import { Stack } from 'expo-router';
+// Tanstack
+import {
+  QueryClient,
+  QueryClientProvider
+} from '@tanstack/react-query';
+// Styles
 import '../global.css';
 
 
+const queryClient = new QueryClient();
+
 const RootLayout = () => {
   return (
-    <View>
-      <Text className='text-3xl text-blue-500'>RootLayout</Text>
-    </View>
+    <QueryClientProvider client={ queryClient }>
+      <Stack
+        screenOptions={{
+          headerShown: false
+        }}
+      />
+    </QueryClientProvider>
   );
 }
 
