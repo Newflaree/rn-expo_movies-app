@@ -3,14 +3,14 @@ import { MovieDBMoviesResponse } from '@/infrastructure/interfaces/moviedb-respo
 import { MovieMapper } from '@/infrastructure/mappers/movie.mapper';
 
 
-export const popularMoviesAction = async () => {
+export const topRatedMoviesAction = async () => {
   try {
-    const { data } = await movieApi.get<MovieDBMoviesResponse>( '/popular' );
+    const { data } = await movieApi.get<MovieDBMoviesResponse>( '/top_rated' );
     const movies = data.results.map( MovieMapper.fromTheMovieDBToMovie );
 
     return movies;
   } catch ( error ) {
     console.log( error );
-    throw 'Cannot load popular movies';
+    throw 'Cannot load top rated movies';
   }
 }

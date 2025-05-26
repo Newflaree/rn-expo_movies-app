@@ -3,14 +3,14 @@ import { MovieDBMoviesResponse } from '@/infrastructure/interfaces/moviedb-respo
 import { MovieMapper } from '@/infrastructure/mappers/movie.mapper';
 
 
-export const popularMoviesAction = async () => {
+export const upcomingMoviesAction = async () => {
   try {
-    const { data } = await movieApi.get<MovieDBMoviesResponse>( '/popular' );
+    const { data } = await movieApi.get<MovieDBMoviesResponse>( '/upcoming' );
     const movies = data.results.map( MovieMapper.fromTheMovieDBToMovie );
 
     return movies;
   } catch ( error ) {
     console.log( error );
-    throw 'Cannot load popular movies';
+    throw 'Cannot load upcoming movies';
   }
 }
