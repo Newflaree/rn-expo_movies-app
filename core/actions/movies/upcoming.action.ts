@@ -3,9 +3,18 @@ import { MovieDBMoviesResponse } from '@/infrastructure/interfaces/moviedb-respo
 import { MovieMapper } from '@/infrastructure/mappers/movie.mapper';
 
 
-export const upcomingMoviesAction = async () => {
+interface Options {
+  page?: number;
+  limit?: number;
+}
+
+export const upcomingMoviesAction = async ({ page = 1, limit = 10 }: Options) => {
   try {
-    const { data } = await movieApi.get<MovieDBMoviesResponse>( '/upcoming' );
+    const { data } = await movieApi.get<MovieDBMoviesResponse>( '/upcoming', {
+      params: {
+        page: page
+      }
+    });
     const movies = data.results.map( MovieMapper.fromTheMovieDBToMovie );
 
     return movies;
