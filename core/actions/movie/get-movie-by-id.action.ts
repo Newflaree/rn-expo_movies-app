@@ -8,8 +8,6 @@ export const getMovieByIdAction = async ( id: number | string ): Promise<Complet
     const { data } = await movieApi.get<MovieDBMovieResponse>( `/${ id }` );
     //const movies = data.map( MovieMapper.fromTheMovieDBToMovie );
 
-    console.log( data );
-
     return MovieMapper.fromTheMovieDBToCompleteMovie( data );
   } catch ( error ) {
     console.log( error );
