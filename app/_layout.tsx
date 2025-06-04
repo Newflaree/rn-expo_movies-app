@@ -3,6 +3,7 @@ import {
   View,
   Text
 } from 'react-native';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Stack } from 'expo-router';
 // Tanstack
 import {
@@ -17,13 +18,15 @@ const queryClient = new QueryClient();
 
 const RootLayout = () => {
   return (
-    <QueryClientProvider client={ queryClient }>
-      <Stack
-        screenOptions={{
-          headerShown: false
-        }}
-      />
-    </QueryClientProvider>
+    <GestureHandlerRootView>
+      <QueryClientProvider client={ queryClient }>
+        <Stack
+          screenOptions={{
+            headerShown: false
+          }}
+        />
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 }
 
